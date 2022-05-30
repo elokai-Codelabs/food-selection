@@ -1,0 +1,116 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="shortcut icon" type="image/png" href="{% static 'images/gnaas.jpg' %}" /> 
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <section id="about-home">
+      <h2>SABBATH SCHOOL DEPARTMENT /</h2>
+    </section>
+
+    <section id="course">
+      <h1>GNAAS UG TRADITIONAL SABBATH</h1>
+      <h3 style="color: rgb(23, 23, 94)">
+        SABBATH SCHOOL CLASS BASED FOOD SELECTION
+      </h3>
+    </section>
+
+    <section id="contact">
+      <div class="getin">
+        <h2>ORGANIZERS</h2>
+
+        <div class="getin-details">
+          <h3>Okai Larbi Ernest - Head</h3>
+          <div>
+            <i class="fas fa-phone-alt get"></i>
+            <p>0547716175</p>
+          </div>
+          <!-- esther -->
+          <h3>Owiredu Hillary - Secretary</h3>
+          <div>
+            <i class="fas fa-phone-alt get"></i>
+            <p>0278450359</p>
+          </div>
+
+          <br />
+          <h3>LIST OF PROPOSED MEALS</h3>
+          <p>1. Waakye with fish/egg and peper+shito</p>
+          <p>2. Banku with peper+fish</p>
+          <br />
+          <p>3. Gari and Beans with plantain+Avocado+vegetables</p>
+          <p>4. Eto (Mashed Plantain) with sprinkeled groundnut+egg</p>
+          <p>
+            5. Sobolo and Fruits (Watermelon, Banana, Mango, Pineapple, Pawpaw
+            and orange)
+          </p>
+          <p>6. Bankye Agbele Kaaklo</p>
+
+          <p style="color: red; font-weight: bold">
+            The first person to choose reserve a particular selection for one
+            particular sabbath school class.
+          </p>
+        </div>
+      </div>
+
+      <form action="" class="form">
+       
+          <h4>RANDOM FOOD SELECTION</h4>
+          <p>Below is the list of sabbath school classes we have</p>
+          <hr /> <br>
+
+          <p>1. Legon /Jublee /Valco</p>
+          <p>2. Mensah Sarbah</p>
+          <p>3. Akuafo</p>
+          <p>4. Pent / Evandy</p>
+          <p>5. Bani / TF</p>
+          <p>6. Liman / Kwapong</p>
+          <p>7.Sey / Nelson</p>
+          <p>8. Commonwealth / Volta</p>
+          <p>9. Non residents /Private hostel</p> 
+        
+         <select name="" id="" class="form-row" onchange="fetchFoods(this)">
+          
+           <option value="1" style="padding: 10px;">Choose your sabbath school class</option>
+           {% for select in selection %}
+           <option value="{{select.id}}">{{select.class_name}}</option>
+           {% endfor %}
+          
+         </select>
+
+         <p>The food given to <span id="class_name">...</span> IS <span id="meal_selected">...</span> </p>
+          
+         
+        
+         
+        </div>
+      </form>
+    </section>
+
+    <script>
+      const className = document.getElementById("class_name");
+      const mealSelect = document.getElementById("meal_selected");
+      function fetchFoods(element){
+        url =  `/ajax/fetch-foods/${element.value}`
+        fetch(url).then(response => response.json()).then(response => )
+        .catch(err =>alert(err))
+      }
+    </script>
+  </body>
+</html>
